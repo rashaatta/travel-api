@@ -16,16 +16,16 @@ class AdminTravelTest extends TestCase
     {
         $response = $this->postJson('/api/v1/admin/travels');
 
-        $response->assertStatus(422);
+        $response->assertStatus(401);
     }
 
     public function test_non_admin_user_cannot_access_adding_travel(): void
     {
         $this->seed(RoleSeeder::class);
         $user = User::factory()->create();
-        $user->roles()->attach(Role::where('name', 'admin')->value('id'));
+        $user->roles()->attach(Role::where('name', 'user')->value('id'));
         $response = $this->actingAs($user)->postJson('/api/v1/admin/travels');
-        $response->assertStatus(422);
+        $response->assertStatus(403);
     }
 
     public function test_saves_travel_successfully_with_valid_data(): void
