@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ToursListRequest;
 use App\Http\Resources\TourResource;
 use App\Models\Travel;
-
+/**
+ * @group Public endpoints
+ *
+ * @authenticated
+ */
 class TourController extends Controller
 {
     public function index(Travel $travel, ToursListRequest $request)
