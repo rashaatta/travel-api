@@ -18,9 +18,9 @@ class TravelFactory extends Factory
     {
         return [
             'name' => $this->faker->text(20),
-            'is_public'=> $this->faker->boolean(),
+            'is_public' => $this->faker->boolean(),
             'description' => $this->faker->text(100),
-            'number_of_days' => $this->faker->numberBetween(1,10),
+            'number_of_days' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

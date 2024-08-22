@@ -30,7 +30,6 @@ class TourController extends Controller
             ->orderBy('starting_date')
             ->paginate();
 
-
         return TourResource::collection($tours);
     }
 }
