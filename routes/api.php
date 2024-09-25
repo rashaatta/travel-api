@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('send', [TravelController::class, 'send']);
 Route::get('travels', [TravelController::class, 'index']);
 Route::get('travels/{travel:slug}/tours', [TourController::class, 'index']);
 

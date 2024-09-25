@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Travel extends Model
 {
-    use HasFactory, HasUuids, Sluggable;
+    use HasFactory, HasUuids, Sluggable, Searchable;
 
     protected $table = 'travels';
 
@@ -35,6 +36,19 @@ class Travel extends Model
                 'source' => 'name',
             ],
         ];
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray()
+    {
+        return array_merge($this->toArray(),[
+            'name' => (string) $this->name,
+            'description' => $this->description,
+        ]);
     }
 
     public function numberOfNights(): Attribute
