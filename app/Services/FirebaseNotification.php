@@ -12,7 +12,15 @@ class FirebaseNotification
 
     public function __construct()
     {
-        $firebase = (new Factory)->withServiceAccount(config('firebase.projects.app.credentials'));
+        $credentialsPath = config('firebase.projects.app.credentials');
+        if (!file_exists($credentialsPath)) {
+            die('Credentials file does not exist.');
+        }
+
+        if (!is_readable($credentialsPath)) {
+            die('Credentials file is not readable.');
+        }
+        $firebase = (new Factory)->withServiceAccount($credentialsPath);
         $this->messaging = $firebase->createMessaging();
     }
 

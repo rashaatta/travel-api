@@ -29,9 +29,9 @@ class TravelController extends Controller
 
     public function send()
     {
-        $deviceToken = 'fjtdT5WnUHJXVHffBWSW2h:APA91bEAIQc8Cp0quW8B69QvDjzE6n8dCqd7cW_raccZP0t_oN84ie1fWzNsl2T-rkKBPZBdrcKR_i5UvyZjYn4yPb0hntAjy1M-zmPtzHiYo1PGfTn6esubdo3-wXpWWriLxtLhsNWW';
-        $title = 'Hello Rasha';
-        $body = 'Hello Body';
+        $deviceToken = 'cElqkd3ttVtNQzkxUoeXON:APA91bH1zYX36BKSFIGsq7QVKjF49-aY6zmTURlPRKp0gN534_WZw3Kytcr3O5He0xEAbphCXBHbN45zk9kypIZwDkHr08Khl0WDuXqJJA4Ndht3eHuUGt7nABqmRCDVV68bWDsVc3e8';
+        $title = 'Hi Rasha!';
+        $body = 'Welcome with you !';
 
         // Dispatch the job to the queue
         SendPushNotification::dispatch($deviceToken, $title, $body);

@@ -1,7 +1,5 @@
-import {initializeApp} from  "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import {getMessaging, getToken, onMessage  } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js';
-
-const vapidKey1 = 'BEN6o-Y4XD6n9w8k0Nt1sBHYcprnM9DyEzJlERhQu7pZNTIPnrvC37_y__4lTdkuCo1pu9joKBTjP6EJxBXEZ4A';
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import {getMessaging, getToken, onMessage} from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js';
 const vapidKey = 'BFwGd1kfoTpOrocnH0mlcVMcz7C6Nkbcc6mw6q8d5Pby5Dsq4pHbZ44oUMs1Sl0V27uwvvF-73MHdf1XvfJNzKw';
 
 
@@ -24,7 +22,7 @@ const messaging = getMessaging(app);
 Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
         console.log('Notification permission granted.');
-        getToken(messaging, { vapidKey: vapidKey })
+        getToken(messaging, {vapidKey: vapidKey})
             .then((currentToken) => {
                 if (currentToken) {
                     console.log('Token:', currentToken);
@@ -40,3 +38,24 @@ Notification.requestPermission().then((permission) => {
         console.log('Unable to get permission to notify.');
     }
 });
+
+// Handle foreground messages
+onMessage(messaging, (payload) => {
+    console.log('Message received. ', payload);
+    // Show notification or update UI as needed
+    const noteTitle = payload.notification.title;
+    const noteOptions = {
+        body: payload.notification.body,
+        icon: payload.notification.icon,
+    };
+    new Notification(noteTitle, noteOptions);
+});
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/firebase-messaging-sw.js')
+        .then(function (registration) {
+            console.log('Service Worker registered with scope:', registration.scope);
+        }).catch(function (err) {
+        console.log('Service Worker registration failed:', err);
+    });
+}
