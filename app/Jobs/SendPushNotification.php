@@ -35,5 +35,7 @@ class SendPushNotification implements ShouldQueue
         // Send push notification using Firebase
         $firebaseNotification = new FirebaseNotification();
         $firebaseNotification->sendNotification($this->deviceToken, $this->title, $this->body);
+
+
     }
 }

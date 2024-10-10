@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'tabby' => [
+        'key' => env('TAPPAY_API_KEY'),
+        'secret' => env('TAPPAY_SECRET_KEY'),
+        'webhook' => env('TABBY_WEBHOOK_SECRET'),
+    ],
 ];

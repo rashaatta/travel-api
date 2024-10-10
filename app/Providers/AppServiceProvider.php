@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Payment\Gateways\TapPayGateway;
+use App\Payment\PaymentService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('payment.tabby', function () {
+            return new PaymentService(new TapPayGateway());
+        });
     }
 
     /**
