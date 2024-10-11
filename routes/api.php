@@ -26,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('send-notification', [NotificationController::class, 'sendNotification']);
+Route::get('sms', [NotificationController::class, 'sms']);
+Route::get('whatsApp', [NotificationController::class, 'whatsApp']);
 Route::get('travels', [TravelController::class, 'index'])->name('travels.index');
 Route::get('travels/{travel:slug}/tours', [TourController::class, 'index']);
 

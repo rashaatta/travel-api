@@ -36,4 +36,9 @@ return [
         'secret' => env('TAPPAY_SECRET_KEY'),
         'webhook' => env('TABBY_WEBHOOK_SECRET'),
     ],
+    'vonage' => [
+        'key' => env('VONAGE_KEY'),
+        'secret' => env('VONAGE_SECRET'),
+        'sms_from' => env('VONAGE_SMS_FROM'),
+    ],
 ];
